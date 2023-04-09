@@ -1,0 +1,7 @@
+name: MetaGangaLobby
+version: '${project.version}'
+main: me.abhinav.metagangalobby.Main
+api-version: 1.19
+softdepend: ["Plan"]
+commands:
+  playgame:
