@@ -2,6 +2,8 @@ name: MetaGangaLobby
 version: '${project.version}'
 main: me.abhinav.metagangalobby.Main
 api-version: 1.19
+depend: ["SkinsRestorer"]
 softdepend: ["Plan"]
 commands:
   playgame:
+  avatar:

@@ -1,6 +1,7 @@
 package me.abhinav.metagangalobby;
 
 import me.lagbug.emailer.spigot.api.events.PlayerVerifyEvent;
+import net.skinsrestorer.api.SkinsRestorerAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -12,6 +13,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class MainListener implements Listener {
     Main main = Main.getInstance();
@@ -25,12 +27,6 @@ public class MainListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
-        if(!player.hasPermission("email.verified")) {
-            player.sendMessage(ChatColor.RED + "Please Connect Your Email to play Meta Ganga!");
-            player.sendMessage(ChatColor.GREEN + "Use - /setemail [email-address]");
-            player.sendTitle(ChatColor.RED + "Please Connect your Email!", ChatColor.GREEN + "Use - /setemail [email-address]");
-            player.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
-        }
         player.setHealth(20);
         player.setFoodLevel(20);
         player.getInventory().clear();
@@ -40,6 +36,26 @@ public class MainListener implements Listener {
         player.setLevel(0);
 
         e.setJoinMessage(null);
+
+        if(!SkinsRestorerAPI.getApi().hasSkin(player.getName())) {
+            int ramdomSKin = (int) Math.floor(Math.random() * 6 + 1);
+            main.applySkin(player, ramdomSKin);
+        }
+
+        player.sendTitle(ChatColor.AQUA + "Welcome to Gift of Ganga", ChatColor.GREEN + "Enjoy your stay!");
+        player.sendMessage(ChatColor.GREEN + "Welcome to Gift of Ganga. Enjoy your stay!");
+        player.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
+
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                if(!player.hasPermission("email.verified")) {
+                    player.sendMessage(ChatColor.RED + "Please connect your Email to play!");
+                    player.sendMessage(ChatColor.GREEN + "Use - /setemail [email-address]");
+                    player.playSound(player, Sound.UI_BUTTON_CLICK, 1.0f, 1.0f);
+                }
+            }
+        }.runTaskLater(main, 100L);
     }
 
     @EventHandler

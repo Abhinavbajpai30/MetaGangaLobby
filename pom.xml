@@ -65,6 +65,10 @@
             <id>jitpack</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>codemc-snapshots</id>
+            <url>https://repo.codemc.org/repository/maven-releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -85,6 +89,12 @@
             <groupId>com.github.plan-player-analytics</groupId>
             <artifactId>Plan</artifactId>
             <version>5.5.2307</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.skinsrestorer</groupId>
+            <artifactId>skinsrestorer-api</artifactId>
+            <version>14.2.3</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

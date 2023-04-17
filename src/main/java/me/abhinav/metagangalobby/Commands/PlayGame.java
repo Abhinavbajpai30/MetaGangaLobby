@@ -33,18 +33,18 @@ public class PlayGame implements CommandExecutor {
         }
 
         if(!player.hasPermission("email.verified")) {
-            player.sendMessage(ChatColor.RED + "Please Connect Your Email to play Meta Ganga!");
+            player.sendMessage(ChatColor.RED + "Please connect your Email to play!");
             player.sendMessage(ChatColor.GREEN + "Use - /setemail [email-address]");
             player.sendTitle(ChatColor.RED + "Please Connect your Email!", ChatColor.GREEN + "Use - /setemail [email-address]");
             player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1.0f, 1.0f);
             return false;
         }
-        if(!player.hasPermission("metaganga.admin") && player.hasPermission("metaganga.finished")) {
+        /*if(!player.hasPermission("metaganga.admin") && player.hasPermission("metaganga.finished")) {
             player.sendMessage(ChatColor.RED + "You have already played and made your contribution!");
             player.sendTitle(ChatColor.RED + "You have already made your contribution!", ChatColor.AQUA + "You can check your score on Leaderboard");
             player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1.0f, 1.0f);
             return false;
-        }
+        }*/
         player.playSound(player, Sound.BLOCK_NOTE_BLOCK_PLING, 1.0f, 1.0f);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
